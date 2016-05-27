@@ -1,0 +1,13 @@
+declared-services:
+  Dialog-hn:
+    label: dialog
+    plan: standard
+applications:
+- services:
+  - Dialog-hn
+  name: BajajDialogUI
+  command: node app.js
+  path: ./dialog-nodejs-master
+  memory: 512M
+  env:
+    NODE_ENV: production
