@@ -46,7 +46,7 @@ var dialog_id_in_json = (function() {
 })();
 
 
-var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '79aaf467-5cb5-4bcc-af38-19b93ca09294';
+var dialog_id = process.env.DIALOG_ID || dialog_id_in_json ;
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
