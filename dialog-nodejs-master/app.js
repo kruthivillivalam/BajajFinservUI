@@ -30,8 +30,8 @@ require('./config/express')(app);
 // if bluemix credentials exists, then override local
 var credentials =  extend({
   url: 'https://gateway.watsonplatform.net/dialog/api',
-  username: '626037eb-8a83-4269-9814-3cc6ffbe7575',
-  password: 'qn6KWAG2PzDu',
+  username: '43514104-7078-4fec-861f-acb9cca5c9cd',
+  password: '3DetcMprXUan',
   version: 'v1'
 }, bluemix.getServiceCreds('dialog')); // VCAP_SERVICES
 
@@ -46,7 +46,7 @@ var dialog_id_in_json = (function() {
 })();
 
 
-var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '3948974d-17a6-454a-a392-ace2c993b33a';
+var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '855a98b8-5259-4541-ad47-af5c6bc36bf4';
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
