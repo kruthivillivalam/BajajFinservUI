@@ -16,7 +16,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 
 ## Getting started
-Hey
+Heyyy
   1. Create a Bluemix account. [Sign up][sign_up] in Bluemix or use an existing account. Watson services in beta are free to use.
 
   2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool.
