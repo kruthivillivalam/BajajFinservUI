@@ -6,9 +6,14 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
+        <script>
    		  $(document).ready(function(){
+          
    		  	        alert("Inside");
+                     $("#emi").on("click",function(){
+                    alert("showing session data");
+                     $("#t01").show();
+                    });
 					$("#product_features").click(function(){
 						alert("inside login");
 						$.ajax({
@@ -34,39 +39,59 @@
 						});
 						console.log("outside login")
 					});
-    					
+                    
+                  
+
 			});
 
-    			
-   		  </script>
 
-</head>
-        
+   		  </script> 
+  </head>  
+ <body>
+<!--body style="background: url(file:\\C:\Users\IBM_ADMIN\Documents\BajajFinservUI-master\dialog-nodejs-master\public\images\buildingImage.png)"-->
+<h1>Customer Data</h1>
+
+
    		<body>
-   		  
+
 		  <div data-role="page" id="pageone"  >
-                    
-		    <div data-role="header">
-    			<h1>Welcome To My Homepage</h1>
   			</div>
   			 <div data-role="main" class="ui-content">
-   			 <form>
-			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="product_features">Product features</button>
-			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="desc">Description</button>
+   
+         
+            <form>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="emi">EMI</button>
+              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="product_features">Features & Benifits</button>
+              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="eligibility">Eligibility</button>
 			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="value">Value</button>
-    			<div id="demo" class="collapse">
+              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="Apply_online">Apply Online</button>
+			<div id="demo" class="collapse">
   				</div>
-			</form> 
-			
-			 <div data-role="footer" data-position="fixed">
-    			<h1>Footer Text</h1>
-  			</div>
+    <table id="t01",border-spacing: 5px, background-color=#f1f1c1, border="1", style="width:50%;padding-left: 15px;display:none">          
+    <th>Session Data</th>          
+    <tr>
+        <th>Salaried/Business/Self employed</th>
+        <th>Cost of property</th>
+        <th>Loan amount</th>
+        <th>Loan tenure</th>
+        <th>Monthly Income</th>
+        <th>Other EMIs</th>
+        <th>Your calculated monthly EMI in INR</th>
+    </tr>
+    <tr>
+        <td>salaried</td>
+        <td>5000000</td>
+        <td>2000000</td>
+        <td>5 years</td>
+        <td>50000</td>
+        <td>560034</td>
+        <td>12000</td>
+</table>
+            </form>
   			</div>
   		  </div>
    		</body>
-   		
+
+</body>
 </html>
 
-        
- 
-        
