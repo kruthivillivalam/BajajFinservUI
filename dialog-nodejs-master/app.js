@@ -199,9 +199,9 @@ app.post('/dummy',function(req,res,next){
 				});
 			}
 			if(par.value === "both"){
-				dbSample.allDocs(function(err, result) {
+				dbSample.find({"selector": {"$or":[{"loan_type":"home loan"},{"loan_type":"Vehicle loan"}]}},function(err,result){
 					console.log(result);
-					res.status(200).set('content-type', 'application/json').json(result);
+				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
 		});
