@@ -155,7 +155,7 @@
 																															<item>flat loan</item>
 																															<item>appartment loan</item>
 																														</grammar>
-																														<action varName="loantype" operator="SET_TO">home</action>
+																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output>
 																																<output id="loantype101">
 																																		<prompt selectionType="SEQUENTIAL">
@@ -353,7 +353,7 @@
 																															<item>two wheeler loan</item>
 																															<item>four wheeler loan</item>																																
 																														</grammar>
-																														<action varName="loantype" operator="SET_TO">vehicle</action>
+																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output>
 																																<output id="vehicle_model01">
 																																		<prompt selectionType="SEQUENTIAL">
@@ -512,7 +512,7 @@
 																															<item>vehicle flat loan</item>
 																															<item>vehicle appartment loan</item>																															
 																														</grammar>
-																														<action varName="loantype" operator="SET_TO">both</action>
+																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output id="loantype02">
 																																<output id="loantype102">
 																																		<prompt selectionType="SEQUENTIAL">
