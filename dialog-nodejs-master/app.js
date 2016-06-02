@@ -92,7 +92,7 @@ function initDBConnection() {
                 // check if DB exists if not create
                 
 
-                db = cloudant.use(sample);
+                db = cloudant.use("products");
                 break;
             }
         }
