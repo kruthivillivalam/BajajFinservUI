@@ -189,16 +189,19 @@ app.post('/dummy',function(req,res,next){
 			if(par.value === "home"){
 			dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
 				console.log(result);
+				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
 			if(par.value === "vehicle"){
 				dbSample.find({selector : {"loan_type" : "Vehicle loan"}},function(err,result){
 				console.log(result);
+				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
 			if(par.value === "both"){
 				dbSample.allDocs(function(err, result) {
 					console.log(result);
+					res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
 		});
