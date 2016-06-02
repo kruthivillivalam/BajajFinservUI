@@ -28,6 +28,17 @@ $(document).ready(function () {
     $profile = $('.data--profile'),
     $loading = $('.loader');
 
+  var home_loan='';
+  var veh_loan='';
+  var home_veh_loan='';
+  var cur_emi='';
+  var month_take='';
+  var demo_cal='';
+  var med_val='';
+  var emp_med='';
+  var a, b, c;
+
+
 
   $chatInput.keyup(function(event){
     if(event.keyCode === 13) {
@@ -58,12 +69,12 @@ $(document).ready(function () {
         $chatInput.val(''); // clear the text input
 
         $jsonPanel.html(JSON.stringify(dialog.conversation, null, 2));
-
+        //console.log(dialog.conversation);
         // update conversation variables
         conversation_id = dialog.conversation.conversation_id;
         client_id = dialog.conversation.client_id;
 
-        console.log(dialog);
+        //console.log(dialog);
         var texts = dialog.conversation.response;
         var response = texts.join('&lt;br/&gt;'); // &lt;br/&gt; is <br/>
 
@@ -79,6 +90,7 @@ $(document).ready(function () {
         talk('WATSON', response); // show
 
         getProfile();
+        
       })
       .fail(function(error){
         talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
@@ -91,6 +103,94 @@ $(document).ready(function () {
 
   };
 
+
+  var myfun=function(name,value){
+
+    /*if(name === 'age'){
+
+      console.log("D variable="+d);
+      console.log("my age="+ value);
+      window.location="http://www.google.com";
+      // res.redirect('/example');
+
+    }*/
+
+    if(name === 'home_loan_amount'){
+      home_loan=value;
+    }
+    if(name === 'vehicle_loan_amount'){
+      veh_loan=value;
+    }
+    if(name === 'home_vehicle_loan_amount'){
+      home_veh_loan=value;
+    }
+    if(name === 'monthly_income'){
+      month_take=value;
+    }
+    if(name === 'current_emi'){
+      cur_emi=value;
+    }
+    if(name === 'medical_offer'){
+      med_val=value;
+    }
+    if(name === 'emp_medical'){
+      emp_med=value;
+    }
+    if(emp_med === 'y' ) {
+      if (emp_med === 'y' && med_val === 'y') {
+        if(home_loan !== ''){ 
+          a = parseFloat(home_loan) / 100;
+        }
+        if(veh_loan !== ''){
+          a = parseFloat(veh_loan) / 100;
+        }
+        if(home_veh_loan !== ''){
+          a = parseFloat(home_veh_loan) / 100;
+        }
+        b = a + parseFloat(cur_emi)
+        c = 0.9 * parseFloat(month_take);
+        if (b < c) {
+          demo_cal = "eligible";
+          //$('.txt').text(demo_cal);
+          alert("Congratulations,you are eligible for loan...");
+          window.location = "index2.html";
+        }
+        else{
+          demo_cal = "not eligible";
+          //$('.txt').text(demo_cal);
+          alert("Sorry,you are not eligible..Try our eligible calculator");
+          window.location = "index2.html";
+        }
+      }
+    }
+    else if(emp_med === 'n' && med_val === '') {
+      if(home_loan !== ''){
+        a = parseFloat(home_loan) / 100;
+      }
+      if(veh_loan !== ''){
+        a = parseFloat(veh_loan) / 100;
+      }
+      if(home_veh_loan !== ''){
+        a = parseFloat(home_veh_loan) / 100;
+      }
+      b = a + parseFloat(cur_emi)
+      c = 0.9 * parseFloat(month_take);
+        if (b < c) {
+          demo_cal = "eligible";
+          //$('.txt').text(demo_cal);
+          alert("Congratulations,you are eligible for loan");
+          window.location = "index2.html";
+        }
+        else{
+          demo_cal = "not eligible";
+          //$('.txt').text(demo_cal);
+          alert("Sorry,you are not eligible..Try our eligible calculator");
+          window.location = "index2.html";
+        }
+
+    }
+  }
+  
   var getProfile = function() {
     var params = {
       conversation_id: conversation_id,
@@ -100,8 +200,10 @@ $(document).ready(function () {
     $.post('/profile', params).done(function(data) {
       $profile.empty();
       data.name_values.forEach(function(par) {
-        if (par.value !== '')
+        if (par.value !== '') {
+          myfun(par.name,par.value);
           addProperty($profile, par.name + ':', par.value);
+        }
       });
     }).fail(function(error){
       talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
@@ -126,7 +228,8 @@ $(document).ready(function () {
     var $chatBox = $('.chat-box--item_' + origin).first().clone();
     var $loading = $('.loader');
     $chatBox.find('p').html($('<p/>').html(text).text());
-    // $('.chat-box--pane').append($chatBox);
+
+        // $('.chat-box--pane').append($chatBox);
     $chatBox.insertBefore($loading);
     setTimeout(function() {
       $chatBox.removeClass('chat-box--item_HIDDEN');
@@ -137,6 +240,7 @@ $(document).ready(function () {
     var $property = $('.data--variable').last().clone();
     $property.find('.data--variable-title').text(name);
     $property.find('.data--variable-value').text(value);
+
     $property.appendTo($parent);
     setTimeout(function() {
       $property.removeClass('hidden');
