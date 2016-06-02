@@ -18,10 +18,12 @@
 								alert("result " + result);
       							for (var i=0;i<result.docs.length;i++){
       								alert("inside for");
-      								var x=result.docs[i]['loan_type'];
-      								var y=result.docs[i]['product_features'];
-      								alert(x);
-      								document.getElementById('demo').innerHTML=x;
+      								var x,y,p;
+      								x=result.docs[i]['loan_type'];
+      								y=result.docs[i]['product_features'];
+      								p += '\n'+x+'\n'+y+'\n\n';
+      								alert(p);
+      								document.getElementById('demo').innerHTML=p;
       							}
 								
        						 },
