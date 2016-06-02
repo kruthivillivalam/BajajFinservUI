@@ -199,7 +199,7 @@ app.post('/dummy',function(req,res,next){
 			if(par.value === "both"){
 				dbSample.allDocs(function(err, result) {
 					console.log(result);
-				}
+				});
 			}
 		});
 	
