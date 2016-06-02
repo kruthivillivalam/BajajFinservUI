@@ -2,9 +2,13 @@ declared-services:
   Dialog-k2:
     label: dialog
     plan: standard
+  Cloudant NoSQL DB-fn:
+    label: Cloudant NoSQL DB
+    plan: standard
 applications:
 - services:
   - Dialog-k2
+  - Cloudant NoSQL DB-fn
   name: BajajDialogUI
   command: node app.js
   path: ./dialog-nodejs-master
