@@ -9,26 +9,26 @@
         <script>
    		  $(document).ready(function(){
           
-   		  	        alert("Inside");
+   		  	        //alert("Inside");
                      $("#emi").on("click",function(){
-                    alert("showing session data");
+                    //alert("showing session data");
                      $("#t01").show();
                     });
 					$("#product_features").click(function(){
-						alert("inside login");
+						//alert("inside login");
 						$.ajax({
 							type: "POST",
 							url:"http://bajajfinservui.mybluemix.net/dummy",
 							success: function(result){
 								alert("result " + result);
       							for (var i=0;i<result.docs.length;i++){
-      								alert("inside for");
-      								var x,y,p="";
+      								//alert("inside for");
+      								var x,y;
       								x=result.docs[i]['loan_type'];
       								y=result.docs[i]['product_features'];
       								//p += '\n'+x+'\n'+y+'\n\n';
-      								alert(p);
-      								$('#demo').append(x + '<br/>' + y);
+      								//alert(p);
+      								$('#demo').append(x + '<br/>' + y + '<br/>');
       								//document.getElementById('demo').innerHTML=p;
       							}
 								
