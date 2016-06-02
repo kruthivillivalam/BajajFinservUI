@@ -14,6 +14,9 @@
             </output>
 			</output>
             <output>
+                <prompt selectionType="SEQUENTIAL">
+                    <item>Bye</item>
+                </prompt>
                 <getUserInput id="getUserInput_2442994">
                     <search ref="folder_2442998"/>
                     <default>
@@ -29,7 +32,8 @@
                 </getUserInput>
             </output>
         </folder>
-		<folder label="Library">				
+		<folder label="Library">
+				
 			<folder label="Live Content" id="folder_2442979">
                 <output>
                     <prompt selectionType="RANDOM">
@@ -47,7 +51,6 @@
 						<input>
 							<grammar>
 								<item>male</item>
-								<item>m</item>
 							</grammar>
 							<action varName="gender" operator="SET_TO">male</action>
 							<goto ref="folder_2442901"/>
@@ -55,7 +58,6 @@
 						<input>
 							<grammar>
 								<item>female</item>
-								<item>f</item>
 							</grammar>
 							<action varName="gender" operator="SET_TO">female</action>
 							<goto ref="folder_2442901"/>
@@ -65,12 +67,7 @@
 								<item>*</item>
 							</grammar>
 							<action varName="gender" operator="SET_TO">nothing</action>
-							<output>
-								<prompt>
-									<item>You have entered wrong gender</item>
-								</prompt>
-								<goto ref="folder_2442979"/>
-							</output>
+							<goto ref="folder_2442979"/>
 						</input>
 					</getUserInput>
 				</output>
@@ -78,7 +75,7 @@
 			<folder label="Live Content" id="folder_2442901">
                 <output id="folder_id100">
 					<prompt selectionType="SEQUENTIAL">
-						<item>Which city do you live in?</item>
+						<item>{gender} ,Which city do you live in?</item>
 					</prompt>
 					<getUserInput>
 						<input>
@@ -92,6 +89,9 @@
 							</grammar>
 							<action varName="city" operator="SET_TO_USER_INPUT"/>								
 								<output>
+									<prompt selectionType="RANDOM">
+										<item>{city}</item>
+									</prompt>
 									<output id="folder_id101">
 										<prompt selectionType="SEQUENTIAL">
 											<item>Which State do you live in?</item>
@@ -108,7 +108,10 @@
 												</grammar>
 												<action varName="state" operator="SET_TO_USER_INPUT"/>
 													<output>
-														<output id="pincode01">															
+														<prompt selectionType="RANDOM">
+															<item>{state}</item>
+														</prompt>
+															<output id="pincode01">															
 																<prompt selectionType="SEQUENTIAL">
 																	<item>What is your pincode?</item>
 																</prompt>
@@ -119,7 +122,10 @@
 																		</grammar>
 																		<action varName="pincode" operator="SET_TO_USER_INPUT"/>
 																			<output>
-																				<output id="folder_id102">
+																				<prompt selectionType="RANDOM">
+																					<item>{pincode}</item>
+																				</prompt>
+																					<output id="folder_id102">
 																						<prompt selectionType="SEQUENTIAL">
 																							<item>Are you looking for a loan?</item>
 																						</prompt>
@@ -135,7 +141,10 @@
 																								</grammar>
 																								<action varName="loanyn" operator="SET_TO_USER_INPUT"/>
 																									<output>
-																										<output id="loantype01">
+																										<prompt selectionType="RANDOM">
+																											<item>{loanyn}</item>
+																										</prompt>
+																											<output id="loantype01">
 																												<prompt selectionType="SEQUENTIAL">
 																													<item>What type of loan you are looking for(Home,Vehicle or both)?</item>
 																												</prompt>
@@ -157,7 +166,10 @@
 																														</grammar>
 																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output>
-																																<output id="loantype101">
+																																<prompt selectionType="RANDOM">
+																																	<item>{loantype}</item>
+																																</prompt>
+																																	<output id="loantype101">
 																																		<prompt selectionType="SEQUENTIAL">
 																																			<item>Are you looking for a new loan or loan transfer?</item>
 																																		</prompt>
@@ -171,7 +183,10 @@
 																																				</grammar>
 																																				<action varName="loantype1" operator="SET_TO_USER_INPUT"/>
 																																					<output>
-																																						<output id="propcost01">
+																																						<prompt selectionType="RANDOM">
+																																							<item>{loantype1}</item>
+																																						</prompt>
+																																							<output id="propcost01">
 																																								<prompt selectionType="SEQUENTIAL">
 																																									<item>what is the cost of the property?</item>
 																																								</prompt>
@@ -193,7 +208,10 @@
 																																										</grammar>
 																																										<action varName="propcost" operator="SET_TO_USER_INPUT"/>
 																																											<output>
-																																												<output id="home_tenure01">
+																																												<prompt selectionType="RANDOM">
+																																													<item>{propcost}</item>
+																																												</prompt>
+																																													<output id="home_tenure01">
 																																														<prompt selectionType="SEQUENTIAL">
 																																															<item>How much loan period your looking for?</item>
 																																														</prompt>
@@ -227,7 +245,10 @@
 																																																</grammar>
 																																																<action varName="home_tenure" operator="SET_TO_USER_INPUT"/>
 																																																	<output>
-																																																		<output id="home_loan_amount01">
+																																																		<prompt selectionType="RANDOM">
+																																																			<item>{home_tenure}</item>
+																																																		</prompt>
+																																																			<output id="home_loan_amount01">
 																																																				<prompt selectionType="SEQUENTIAL">
 																																																					<item>How much loan are you looking for?</item>
 																																																				</prompt>
@@ -267,6 +288,9 @@
 																																																						</grammar>
 																																																						<action varName="home_loan_amount" operator="SET_TO_USER_INPUT"/>
 																																																							<output>
+																																																								<prompt selectionType="RANDOM">
+																																																									<item>{home_loan_amount}</item>
+																																																								</prompt>
 																																																								<goto ref="folder_id103"/>
 																																																							</output>
 																																																					</input>
@@ -355,7 +379,10 @@
 																														</grammar>
 																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output>
-																																<output id="vehicle_model01">
+																																<prompt selectionType="RANDOM">
+																																	<item>{loantype}</item>
+																																</prompt>
+																																	<output id="vehicle_model01">
 																																		<prompt selectionType="SEQUENTIAL">
 																																			<item>what is the Model/Brand of the vehicle?</item>
 																																		</prompt>
@@ -369,7 +396,10 @@
 																																				</grammar>
 																																				<action varName="vehicle_model" operator="SET_TO_USER_INPUT"/>
 																																					<output>
-																																						<output id="vehicle_tenure01">
+																																						<prompt selectionType="RANDOM">
+																																							<item>{vehicle_model}</item>
+																																						</prompt>
+																																							<output id="vehicle_tenure01">
 																																								<prompt selectionType="SEQUENTIAL">
 																																									<item>How many years loan period your looking for?</item>
 																																								</prompt>
@@ -403,7 +433,10 @@
 																																										</grammar>
 																																										<action varName="vehicle_tenure" operator="SET_TO_USER_INPUT"/>
 																																											<output>
-																																												<output id="vehicle_loan_amount01">
+																																												<prompt selectionType="RANDOM">
+																																													<item>{vehicle_tenure}</item>
+																																												</prompt>
+																																													<output id="vehicle_loan_amount01">
 																																														<prompt selectionType="SEQUENTIAL">
 																																															<item>How much loan are you looking for?</item>
 																																														</prompt>
@@ -443,6 +476,9 @@
 																																																</grammar>
 																																																<action varName="vehicle_loan_amount" operator="SET_TO_USER_INPUT"/>
 																																																	<output>
+																																																		<prompt selectionType="RANDOM">
+																																																			<item>{vehicle_loan_amount}</item>
+																																																		</prompt>
 																																																		<goto ref="folder_id103"/>
 																																																	</output>
 																																															</input>
@@ -514,7 +550,10 @@
 																														</grammar>
 																														<action varName="loantype" operator="SET_TO_USER_INPUT"/>
 																															<output id="loantype02">
-																																<output id="loantype102">
+																																<prompt selectionType="RANDOM">
+																																	<item>{loantype}</item>
+																																</prompt>
+																																	<output id="loantype102">
 																																		<prompt selectionType="SEQUENTIAL">
 																																			<item>Are you looking for a new loan or loan transfer?</item>
 																																		</prompt>
@@ -528,7 +567,10 @@
 																																				</grammar>
 																																				<action varName="loantype1" operator="SET_TO_USER_INPUT"/>
 																																					<output>
-																																						<output id="propcost02">
+																																						<prompt selectionType="RANDOM">
+																																							<item>{loantype1}</item>
+																																						</prompt>
+																																							<output id="propcost02">
 																																								<prompt selectionType="SEQUENTIAL">
 																																									<item>what is the cost of the property?</item>
 																																								</prompt>
@@ -550,7 +592,10 @@
 																																										</grammar>
 																																										<action varName="propcost" operator="SET_TO_USER_INPUT"/>
 																																											<output>
-																																												<output id="vehicle_model02">
+																																												<prompt selectionType="RANDOM">
+																																													<item>{propcost}</item>
+																																												</prompt>
+																																													<output id="vehicle_model02">
 																																														<prompt selectionType="SEQUENTIAL">
 																																															<item>what is the Model/Brand of the vehicle?</item>
 																																														</prompt>
@@ -564,7 +609,10 @@
 																																																</grammar>
 																																																<action varName="vehicle_model" operator="SET_TO_USER_INPUT"/>
 																																																	<output>
-																																																		<output id="home_vehicle_tenure01">
+																																																		<prompt selectionType="RANDOM">
+																																																			<item>{vehicle_model}</item>
+																																																		</prompt>
+																																																			<output id="home_vehicle_tenure01">
 																																																				<prompt selectionType="SEQUENTIAL">
 																																																					<item>How many years loan period your looking for?</item>
 																																																				</prompt>
@@ -598,7 +646,10 @@
 																																																						</grammar>
 																																																						<action varName="home_vehicle_tenure" operator="SET_TO_USER_INPUT"/>
 																																																							<output>
-																																																								<output id="home_vehicle_loan_amount01">
+																																																								<prompt selectionType="RANDOM">
+																																																									<item>{home_vehicle_tenure}</item>
+																																																								</prompt>
+																																																									<output id="home_vehicle_loan_amount01">
 																																																										<prompt selectionType="SEQUENTIAL">
 																																																											<item>How much loan are you looking for?</item>
 																																																										</prompt>
@@ -638,6 +689,9 @@
 																																																												</grammar>
 																																																												<action varName="home_vehicle_loan_amount" operator="SET_TO_USER_INPUT"/>
 																																																													<output>
+																																																														<prompt selectionType="RANDOM">
+																																																															<item>{home_vehicle_loan_amount}</item>
+																																																														</prompt>
 																																																														<goto ref="folder_id103"/>
 																																																													</output>
 																																																											</input>
@@ -757,12 +811,7 @@
 																									<item>*</item>
 																								</grammar>
 																								<action varName="loanyn" operator="SET_TO">nothing</action>
-																								<output>
-																									<prompt selectionType="RANDOM">
-																										<item>Sorry,you have entered wrong loan type.</item>
-																									</prompt>
-																									<goto ref="folder_id102"/>
-																								</output>
+																								<goto ref="folder_id102"/>
 																							</input>
 																						</getUserInput>																						
 																					</output>
@@ -789,12 +838,7 @@
 													<item>*</item>
 												</grammar>
 												<action varName="state" operator="SET_TO">nothing</action>
-												<output>
-													<prompt selectionType="RANDOM">
-														<item>you have entered wrong state.</item>
-													</prompt>
-													<goto ref="folder_id101"/>
-												</output>
+												<goto ref="folder_id101"/>
 											</input>
 										</getUserInput>
 									</output>
@@ -805,12 +849,7 @@
 								<item>*</item>
 							</grammar>
 							<action varName="city" operator="SET_TO">nothing</action>
-							<output>
-								<prompt selectionType="RANDOM">
-									<item>you have entered wrong city.</item>
-								</prompt>
-								<goto ref="folder_id100"/>
-							</output>
+							<goto ref="folder_id100"/>
 						</input>
 					</getUserInput>
 				</output>
@@ -834,18 +873,19 @@
                                     <grammar>
                                         <item>! \d{2}</item>
 				                    </grammar>
-                                    <action varName="age" operator="SET_TO_USER_INPUT"/>									
+                                    <action varName="age" operator="SET_TO_USER_INPUT"/>
+									
                                     <output>
-										<goto ref="folder_2442900"/>																				
+										<prompt selectionType="RANDOM">
+											<item>{age}</item>
+										</prompt>
+																													
+											<goto ref="folder_2442900"/>																				
 									</output>
                                 </input>
 								<input>
 									<grammar>
 										<item>*</item>
-										<item>! \d{1}</item>
-										<item>! \d{3}</item>
-										<item>! \d{4}</item>
-										<item>! \d{5}</item>
 									</grammar>
 									<action varName="age" operator="SET_TO">nothing</action>
 										<output>
@@ -877,7 +917,10 @@
 							</grammar>
 							<action varName="birth_date" operator="SET_TO_USER_INPUT"/>
 								<output>
-									<output id="monthly_income01">
+									<prompt selectionType="RANDOM">
+										<item>{birth_date}</item>
+									</prompt>
+										<output id="monthly_income01">
 											<prompt selectionType="SEQUENTIAL">
 												<item>What is your monthly take home pay?</item>								
 											</prompt>
@@ -929,7 +972,10 @@
 													</grammar>
 													<action varName="monthly_income" operator="SET_TO_USER_INPUT"/>
 														<output>
-															<output id="current_emi01">
+															<prompt selectionType="RANDOM">
+																<item>{monthly_income}</item>
+															</prompt>
+																<output id="current_emi01">
 																	<prompt selectionType="SEQUENTIAL">
 																		<item>What is the amount on EMIs currently being paid?</item>								
 																	</prompt>
@@ -963,7 +1009,10 @@
 																			</grammar>
 																			<action varName="current_emi" operator="SET_TO_USER_INPUT"/>
 																				<output>
-																					<output id="email_id01">
+																					<prompt selectionType="RANDOM">
+																						<item>{current_emi}</item>
+																					</prompt>
+																						<output id="email_id01">
 																							<prompt selectionType="SEQUENTIAL">
 																								<item>May I know your email id?</item>								
 																							</prompt>
@@ -976,7 +1025,10 @@
 																									</grammar>
 																									<action varName="email_id" operator="SET_TO_USER_INPUT"/>
 																										<output>
-																											<output id="emp_type01">
+																											<prompt selectionType="RANDOM">
+																												<item>{email_id}</item>
+																											</prompt>
+																												<output id="emp_type01">
 																													<prompt selectionType="SEQUENTIAL">
 																														<item>Are you Salaried, Self Employed or Business?</item>								
 																													</prompt>
@@ -996,7 +1048,10 @@
 																															</grammar>
 																															<action varName="emp_type" operator="SET_TO_USER_INPUT"/>
 																																<output>
-																																	<output id="emp_medical01">
+																																	<prompt selectionType="RANDOM">
+																																		<item>{emp_type}</item>
+																																	</prompt>
+																																		<output id="emp_medical01">
 																																			<prompt selectionType="SEQUENTIAL">
 																																				<item>Are you in medical profession?</item>								
 																																			</prompt>
@@ -1010,9 +1065,12 @@
 																																						<item>medical</item>
 																																						<item>physician</item>
 																																					</grammar>
-																																					<action varName="emp_medical" operator="SET_TO">y</action>
+																																					<action varName="emp_medical" operator="SET_TO_USER_INPUT"/>
 																																						<output>
-																																							<output id="medical_offer01">
+																																							<prompt selectionType="RANDOM">
+																																								<item>{emp_medical}</item>
+																																							</prompt>
+																																								<output id="medical_offer01">
 																																									<prompt selectionType="SEQUENTIAL">
 																																										<item>Would you want to know of our doctor loan offering as well?</item>								
 																																									</prompt>
@@ -1026,9 +1084,12 @@
 																																												<item>nope</item>
 																																												<item>yup</item>
 																																											</grammar>
-																																											<action varName="medical_offer" operator="SET_TO">y</action>
+																																											<action varName="medical_offer" operator="SET_TO_USER_INPUT"/>
 																																											<action varName="demo_cal" operator="SET_TO" >eligible</action>
 																																												<output>
+																																													<prompt selectionType="RANDOM">
+																																														<item>{medical_offer}</item>
+																																													</prompt>
 																																													<goto ref="demo_cal01"/>
 																																												</output>
 																																										</input>
@@ -1054,9 +1115,11 @@
 																																						<item>n</item>
 																																						<item>nope</item>
 																																					</grammar>
-																																					<action varName="emp_medical" operator="SET_TO">n</action>
-																																					<action varName="demo_cal" operator="SET_TO" >eligible</action>
+																																					<action varName="emp_medical" operator="SET_TO_USER_INPUT"/>
 																																						<output>
+																																							<prompt selectionType="RANDOM">
+																																								<item>{emp_medical}</item>
+																																							</prompt>
 																																							<goto ref="demo_cal01"/>
 																																						</output>
 																																				</input>
@@ -1158,7 +1221,7 @@
 			<folder label="Live Content" id="demo_cal01">			
                 <output>
 					<prompt selectionType="SEQUENTIAL">
-						<item>Based on the information you have provided to us. we are redirecting you to a page which will provide detailed information on our relevant products and allow you to apply for these online</item>								
+						<item>Based on the information you have provided to us , you are eligible for the home loan. we are redirecting you to a page which will provide detailed information on our relevant products and allow you to apply for these online</item>								
 					</prompt>					
 				</output>				
             </folder>
