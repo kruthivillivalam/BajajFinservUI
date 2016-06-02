@@ -18,15 +18,121 @@
 
 var express  = require('express'),
   app        = express(),
+  http 		 = require('http'),
   fs         = require('fs'),
   path       = require('path'),
   bluemix    = require('./config/bluemix'),
   extend     = require('util')._extend,
   watson     = require('watson-developer-cloud');
 
+var querystring = require('querystring');
+var dbCredentials={};
+var db;
+var result1=[];
+var https = require('https');
+var cloudant;
+var size="";
+
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var logger = require('morgan');
+var errorHandler = require('errorhandler');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+app.use(cookieParser());
+app.use(session({resave: 'true', saveUninitialized: 'true' , secret: 'keyboard cat'}));
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({
+    extended : true
+}));
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use('/style', express.static(path.join(__dirname, '/views/style')));
+
+
+app.all('*', function(req, res, next) {
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*Origin, Authorization, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  // res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
+  // res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  next();
+});
+
+if ('development' == app.get('env')) {
+    app.use(errorHandler());
+}
+
+function initDBConnection() {
+
+    if (process.env.VCAP_SERVICES) {
+        var vcapServices = JSON.parse(process.env.VCAP_SERVICES);
+        // Pattern match to find the first instance of a Cloudant service in
+        // VCAP_SERVICES. If you know your service key, you can access the
+        // service credentials directly by using the vcapServices object.
+        for ( var vcapService in vcapServices) {
+            if (vcapService.match(/cloudant/i)) {
+                dbCredentials.host = vcapServices[vcapService][0].credentials.host;
+                dbCredentials.port = vcapServices[vcapService][0].credentials.port;
+                dbCredentials.user = vcapServices[vcapService][0].credentials.username;
+                dbCredentials.password = vcapServices[vcapService][0].credentials.password;
+                dbCredentials.url = vcapServices[vcapService][0].credentials.url;
+
+                cloudant = require('cloudant')(dbCredentials.url);
+
+                // check if DB exists if not create
+                
+
+                db = cloudant.use(sample);
+                break;
+            }
+        }
+        if (db == null) {
+            console
+                .warn('Could not find Cloudant credentials in VCAP_SERVICES environment variable - data will be unavailable to the UI');
+        }
+    } else { 
+        console
+            .warn('VCAP_SERVICES environment variable not set - data will be unavailable to the UI');
+        // For running this app locally you can get your Cloudant credentials
+        // from Bluemix (VCAP_SERVICES in "cf env" output or the Environment
+        // Variables section for an app in the Bluemix console dashboard).
+        // Alternately you could point to a local database here instead of a
+        // Bluemix service.
+        // dbCredentials.host = "REPLACE ME";
+        // dbCredentials.port = REPLACE ME;
+        // dbCredentials.user = "REPLACE ME";
+        // dbCredentials.password = "REPLACE ME";
+        // dbCredentials.url = "REPLACE ME";
+		
+        dbCredentials.host = "bf291c7d-3d43-4efe-b20a-394e978ba839-bluemix.cloudant.com"; // vcapServices[vcapService][0].credentials.host;
+        dbCredentials.port = "443";// vcapServices[vcapService][0].credentials.port;
+        dbCredentials.user = "bf291c7d-3d43-4efe-b20a-394e978ba839-bluemix";// vcapServices[vcapService][0].credentials.username;
+        dbCredentials.password = "ead00cae5e6145d88a3fc0cc009a000ebf3a25bb3852357daa6e083570837015";// vcapServices[vcapService][0].credentials.password;
+        dbCredentials.url = "https://bf291c7d-3d43-4efe-b20a-394e978ba839-bluemix:ead00cae5e6145d88a3fc0cc009a000ebf3a25bb3852357daa6e083570837015@bf291c7d-3d43-4efe-b20a-394e978ba839-bluemix.cloudant.com";// vcapServices[vcapService][0].credentials.url;
+
+        cloudant = require('cloudant')(dbCredentials.url);
+        console.log("cloudant instance");
+
+        console.warn('local settings completed');
+
+   }
+}
+
+// Initiating Database connection function
+
 // Bootstrap application settings
 require('./config/express')(app);
-
+//var api = require('./api');
 // if bluemix credentials exists, then override local
 var credentials =  extend({
   url: 'https://gateway.watsonplatform.net/dialog/api',
@@ -46,7 +152,7 @@ var dialog_id_in_json = (function() {
 })();
 
 
-var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || '855a98b8-5259-4541-ad47-af5c6bc36bf4';
+var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || 'aa0a7d22-b79e-4fc0-9818-72f0900447a0';
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
@@ -63,13 +169,43 @@ app.post('/conversation', function(req, res, next) {
 
 app.post('/profile', function(req, res, next) {
   var params = extend({ dialog_id: dialog_id }, req.body);
+  console.log(params);
   dialog.getProfile(params, function(err, results) {
     if (err)
       return next(err);
     else
       res.json(results);
-  });
+    result1=results;
+		 
+	});
+  
+
 });
+
+app.post('/dummy',function(req,res,next){
+	initDBConnection();
+	var dbSample = cloudant.use("products");
+	result1.name_values.forEach(function(par){
+			if(par.value === "home"){
+			dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
+				console.log(result);
+				});
+			}
+			if(par.value === "vehicle"){
+				dbSample.find({selector : {"loan_type" : "Vehicle loan"}},function(err,result){
+				console.log(result);
+				});
+			}
+			if(par.value === "both"){
+				dbSample.allDocs(function(err, result) {
+					console.log(result);
+				}
+			}
+		});
+	
+	
+});
+
 
 // error-handler settings
 require('./config/error-handler')(app);
