@@ -1,11 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to jaga bank</title>
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+   		  $(document).ready(function(){
+   		  	        alert("Inside");
+					$("#product_features").click(function(){
+						alert("inside login");
+						$.ajax({
+							type: "POST",
+							url:"bajajfinservui.mybluemix.net",
+							success: function(result){
+								alert("result " + result);
+      							for (var i=0;i<result.docs.length;i++){
+      								alert("inside for");
+      								var x=result.docs[i]['loan_type'];
+      								var y=result.docs[i]['product_features'];
+      								alert(x);
+      								document.getElementById('demo').innerHTML=x;
+      							}
+								
+       						 },
+       						error: function(){
+       							alert("failed");
+       						},
+							
+						});
+						console.log("outside login")
+					});
+    					
+			});
+
+    			
+   		  </script>
+
 </head>
-<body>
-<h1>Hi Welcome to jaga bank</h1>
-<p>Home loan,Personel loan,Vehicle loan</p>
-</body>
+        
+   		<body>
+   		  
+		  <div data-role="page" id="pageone"  >
+                    
+		    <div data-role="header">
+    			<h1>Welcome To My Homepage</h1>
+  			</div>
+  			 <div data-role="main" class="ui-content">
+   			 <form>
+			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="product_features">Product features</button>
+			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="desc">Description</button>
+			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="value">Value</button>
+    			<div id="demo" class="collapse">
+  				</div>
+			</form> 
+			
+			 <div data-role="footer" data-position="fixed">
+    			<h1>Footer Text</h1>
+  			</div>
+  			</div>
+  		  </div>
+   		</body>
+   		
 </html>
+
+        
+ 
+        
