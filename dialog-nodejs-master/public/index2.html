@@ -22,7 +22,9 @@
       								//alert("inside for");
       								var x,y;
       								x=result.docs[i]['loan_type'];
-      								y=result.docs[i]['product_features'];
+      								for(var j=0;j<result.docs[j]['product_features'].length;j++)
+      								y.append(result.docs[j]['product_features'][j] + '<br/>');
+      								alert(y);
       								//p += '\n'+x+'\n'+y+'\n\n';
       								//alert(p);
       								$('#demo').append(x + '<br/>' + y + '<br/>');
@@ -58,11 +60,11 @@
    
          
             <form>
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="emi">EMI</button>
+            <button type="button" class="btn btn-info" data-toggle="collapse"  id="emi">EMI</button>
               <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="product_features">Features & Benifits</button>
-              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="eligibility">Eligibility</button>
-			  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="value">Value</button>
-              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="Apply_online">Apply Online</button>
+              <button type="button" class="btn btn-info" data-toggle="collapse" id="eligibility">Eligibility</button>
+			  <button type="button" class="btn btn-info" data-toggle="collapse"  id="value">Value</button>
+              <button type="button" class="btn btn-info" data-toggle="collapse"  id="Apply_online">Apply Online</button>
 			<div id="demo" class="collapse">
   				</div>
     <table id="t01",border-spacing: 5px, background-color=#f1f1c1, border="1", style="width:50%;padding-left: 15px;display:none">          
