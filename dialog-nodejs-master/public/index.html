@@ -1,8 +1,7 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
-  <head>
-     <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Bajaj Finserv - Finance, Investment and Insurance Services in India.</title>
@@ -60,56 +59,6 @@
     <script type="text/javascript" src="js/snow.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-   		  $(document).ready(function(){
-          
-   		  	        
-					$("#product_features").click(function(){
-						//alert("inside login");
-						$.ajax({
-							type: "POST",
-							url:"http://bajajfinservui.mybluemix.net/dummy",
-							success: function(result){
-								alert("result " + result);
-								document.getElementById('demo').innerHTML="";
-      							for (var i=0;i<result.docs.length;i++){
-      								//alert("inside for");
-      								var x,y;
-      								x=result.docs[i]['loan_type'];
-  								    y=result.docs[i]['product_features'];
-
-      								//p += '\n'+x+'\n'+y+'\n\n';
-      								//alert(p);
-      								$('#demo').append(x + '<br/>' + y + '<br/>');
-      								//document.getElementById('demo').innerHTML=p;
-      							}
-								
-       						 },
-       						error: function(){
-       							alert("failed");
-       						},
-							
-						});
-						console.log("outside login")
-					});
-                    
-                  
-
-			});
-
-
-   		  </script> 
-  </head>  
- <body>
-<!--body style="background: url(file:\\C:\Users\IBM_ADMIN\Documents\BajajFinservUI-master\dialog-nodejs-master\public\images\buildingImage.png)"-->
-
-   		<div id="header-top-wrap" class="hidden-xs">
-=======
     
     <script language="JavaScript1.2">
 
@@ -147,7 +96,6 @@ window.onload=rotater;
 </head>
 <body bg-color:="">
 <div id="header-top-wrap" class="hidden-xs">
->>>>>>> 526c5b1558c3abe79e087590c0f5467e7e975d11
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -181,48 +129,6 @@ window.onload=rotater;
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-
-		  <div data-role="page" id="pageone"  >
-  			</div>
-  			 <div data-role="main" class="ui-content">
-   
-         
-            <form>
-            <button type="button" class="btn btn-info" data-toggle="collapse"  id="emi">EMI</button>
-              <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" id="product_features">Features & Benifits</button>
-              <button type="button" class="btn btn-info" data-toggle="collapse" id="eligibility">Eligibility</button>
-			  <button type="button" class="btn btn-info" data-toggle="collapse"  id="value">Value</button>
-              <button type="button" class="btn btn-info" data-toggle="collapse"  id="Apply_online">Apply Online</button>
-			<div id="demo" class="collapse">
-  				</div>
-    <table id="t01",border-spacing: 5px, background-color=#f1f1c1, border="1", style="width:50%;padding-left: 15px;display:none">          
-    <th>Session Data</th>          
-    <tr>
-        <th>Salaried/Business/Self employed</th>
-        <th>Cost of property</th>
-        <th>Loan amount</th>
-        <th>Loan tenure</th>
-        <th>Monthly Income</th>
-        <th>Other EMIs</th>
-        <th>Your calculated monthly EMI in INR</th>
-    </tr>
-    <tr>
-        <td>salaried</td>
-        <td>5000000</td>
-        <td>2000000</td>
-        <td>5 years</td>
-        <td>50000</td>
-        <td>560034</td>
-        <td>12000</td>
-</table>
-<div id="demo"></div>
-            </form>
-  			</div>
-  		  </div>
-   		</body>
-
-=======
 <!-- end of header-top-wrap-->
 <div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12">
@@ -847,7 +753,5 @@ window.onload=rotater;
         </div>
     </div>
 </footer>
->>>>>>> 526c5b1558c3abe79e087590c0f5467e7e975d11
 </body>
 </html>
-
