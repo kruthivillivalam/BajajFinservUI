@@ -41,7 +41,7 @@
 			<folder label="Live Content" id="folder_2442900">
                 <output>
 					<prompt selectionType="SEQUENTIAL">
-						<item>What is your gender(male/female)?</item>								
+						<item>What is your gender (male/female)?</item>								
 					</prompt>
 					<getUserInput>
 						<input>
@@ -137,7 +137,7 @@
 																									<output>
 																										<output id="loantype01">
 																												<prompt selectionType="SEQUENTIAL">
-																													<item>What type of loan you are looking for(Home,Vehicle or both)?</item>
+																													<item>What type of loan you are looking for (Home,Vehicle or both)?</item>
 																												</prompt>
 																												<getUserInput>
 																													<input>
