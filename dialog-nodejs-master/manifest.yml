@@ -2,9 +2,13 @@ declared-services:
   Dialog-8x:
     label: dialog
     plan: standard
+  Text to Speech-w1:
+    label: Text to Speech
+    plan: standard
 applications:
 - services:
   - Dialog-8x
+  - Text to Speech-w1
   name: dialog-nodejs6
   command: node app.js
   path: .

@@ -32,6 +32,15 @@ pre[class*=" language-"] code,
 pre[class*=" language-"] .base--code {
   font-family: "Courier New", "Lucida Console", monospace; }
 
+.abc{
+  margin-top: 6%;
+}
+.abc1{
+  margin-top: 12%;
+}
+.abc2{
+  margin-top: 12%;
+}
 .icon {
   vertical-align: middle;
   display: inline; }
