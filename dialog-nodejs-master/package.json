@@ -44,9 +44,11 @@
 	"method-override": "*",
 	"querystring": "*",
 	"cloudant": "*",
+	"cookie-parser": "*",
 	"express-session": "*",
 	"ejs": "*",
 	"morgan": "*",
+	"errorhandler": "*",
 	"connect-multiparty": "*"
   }
 }

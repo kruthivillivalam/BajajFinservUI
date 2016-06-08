@@ -152,7 +152,7 @@ var dialog_id_in_json = (function() {
 })();
 
 
-var dialog_id = process.env.DIALOG_ID || dialog_id_in_json || 'aa0a7d22-b79e-4fc0-9818-72f0900447a0';
+var dialog_id = process.env.DIALOG_ID || dialog_id_in_json;
 
 // Create the service wrapper
 var dialog = watson.dialog(credentials);
@@ -165,6 +165,27 @@ app.post('/conversation', function(req, res, next) {
     else
       res.json({ dialog_id: dialog_id, conversation: results});
   });
+});
+
+var textToSpeech = watson.text_to_speech({
+  url: 'https://stream.watsonplatform.net/text-to-speech/api',
+  version: 'v1',
+  username: '968d934a-59b7-48de-ac41-77615edeed43',
+  password: 'eNb7aYIv5yqd'
+});
+
+app.get('/api/synthesize', function(req, res, next) {
+  var transcript = textToSpeech.synthesize(req.query);
+  console.log("transcript::::::::::::::::",transcript);
+  transcript.on('response', function(response) {
+    if (req.query.download) {
+      response.headers['content-disposition'] = 'attachment; filename=transcript.ogg';
+    }
+  });
+  transcript.on('error', function(error) {
+    next(error);
+  });
+  transcript.pipe(res);
 });
 
 app.post('/profile', function(req, res, next) {
