@@ -209,7 +209,7 @@ app.post('/dummy',function(req,res,next){
     dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
         console.log(JSON.stringify(result));
 
-        console.log("$$$$$$$$$$$$$$$$", result2);
+        //console.log("$$$$$$$$$$$$$$$$", result2);
         res.status(200).set('content-type', 'application/json').json(result);
 
     });
