@@ -868,12 +868,8 @@
 					<getUserInput>
 						<input>
 							<grammar>
-								<item>! \d{2}-\d{2}-\d{4}</item>
-								<item>! \d{2}/\d{2}/\d{4}</item>
-								<item>! \d{2}.\d{2}.\d{4}</item>
-								<item>! \d{4}-\d{2}-\d{2}</item>
-								<item>! \d{4}/\d{2}/\d{2}</item>
-								<item>! \d{4}.\d{2}.\d{2}</item>
+								<item>! ^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$</item>
+
 							</grammar>
 							<action varName="birth_date" operator="SET_TO_USER_INPUT"/>
 								<output>
@@ -986,16 +982,9 @@
 																																<item>salaried</item>
 																																<item>sal</item>
 																																<item>salary</item>
-																																<item>self</item>
-																																<item>self employed</item>
-																																<item>business</item>
-																																<item>private</item>
-																																<item>contractor</item>
-																																<item>shop</item>
-																																<item>owner</item>
+
 																															</grammar>
-																															<action varName="emp_type" operator="SET_TO_USER_INPUT"/>
-																																<output>
+																															<action varName="emp_type" operator="SET_TO">sal</action>																																<output>
 																																	<output id="emp_medical01">
 																																			<prompt selectionType="SEQUENTIAL">
 																																				<item>Are you in medical profession?</item>								
@@ -1076,6 +1065,24 @@
 																																		</output>
 																																</output>
 																														</input>
+																														<input>
+																															<grammar>
+																																<item>self</item>
+																																<item>self employed</item>
+																															</grammar>
+																															<action varName="emp_type" operator="SET_TO">self</action>
+																															<goto ref="emp_medical01"/>
+																														</input>
+																														<input>
+																															<grammar>
+																																<item>business</item>
+																																<item>private</item>
+																																<item>contractor</item>
+																																<item>shop</item>
+																																<item>owner</item>
+																															</grammar>
+																															<action varName="emp_type" operator="SET_TO">business</action>
+																															<goto ref="emp_medical01"/>																														</input>
 																														<input>
 																															<grammar>
 																																<item>*</item>
