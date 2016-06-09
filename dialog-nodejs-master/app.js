@@ -206,14 +206,8 @@ app.post('/profile', function(req, res, next) {
 app.post('/dummy',function(req,res,next){
 	initDBConnection();
 	var dbSample = cloudant.use("products");
-    dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
-        console.log(JSON.stringify(result));
 
-        //console.log("$$$$$$$$$$$$$$$$", result2);
-        res.status(200).set('content-type', 'application/json').json(result);
-
-    });
-	/*result1.name_values.forEach(function(par){
+	result1.name_values.forEach(function(par){
 
 			if(par.value === "home"){
 			dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
@@ -234,7 +228,7 @@ app.post('/dummy',function(req,res,next){
 				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
-		}); */
+		}); 
 	
 	
 });
