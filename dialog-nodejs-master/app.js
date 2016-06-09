@@ -208,16 +208,17 @@ app.post('/dummy',function(req,res,next){
 	var dbSample = cloudant.use("products");
     dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
         console.log(JSON.stringify(result));
-       var result2=docs[0].product_features.salaried.home_loan;
+
         console.log("$$$$$$$$$$$$$$$$", result2);
         res.status(200).set('content-type', 'application/json').json(result);
 
     });
-	/*result1.name_values.forEach(function(par){
+	result1.name_values.forEach(function(par){
 
 			if(par.value === "home"){
 			dbSample.find({selector : {"loan_type" : "home loan"}},function(err,result){
 				console.log(result);
+
 				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
@@ -233,7 +234,7 @@ app.post('/dummy',function(req,res,next){
 				res.status(200).set('content-type', 'application/json').json(result);
 				});
 			}
-		}); */
+		});
 	
 	
 });
